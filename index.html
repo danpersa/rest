@@ -41,86 +41,845 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h1>REST</h1>
+					<h3>Representational State Transfer</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
+						<small>Created by <a href="https://github.com/danpersa">Dan Persa</a> / <a href="http://twitter.com/danpersa">@danpersa</a></small>
 					</p>
 				</section>
 
 				<section data-markdown>
 					<script type="text/template">
-						## Markdown support
+						## Table of Contents
 
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
+						* SOAP vs REST
+						* REST
+						* Our REST Approach
+						* API Design Principles
 					</script>
 				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## SOAP - The Good
+
+							* SOAP was great
+							* has strictly defined interfaces
+							* introduce breaking changes in an obvious way
+							* produced type safety
+							* WSDL provides some documentation for free
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## SOAP - The Bad
+
+							* Non breaking changes are hard
+							* Introduce binary coupling between systems
+							* Only uses XML
+							* Sucks for some Tech Stacks
+							* Verbose
+
+							Notes:
+							XML is harder to read than JSON
+						</script>
+					</section>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Then Jesus said:
+
+						> &ldquo;Come to me, all of you who are weary and carry heavy burdens, and I will give you **REST**.&rdquo;
+
+						<p align="right">*Matthew 11:28*</p>
+
+						Notes:
+						REST is not a new thing… Roy Fielding wrote his dissertation in the year 2000… on the other hand, SOAP was designed as an object-access protocol in 1998 for Microsoft...
+
+						so we could say that REST is 2 years younger SOAP… although some tech evangelists would still argue that there were people talking about REST more than 2000 years ago...
+					</script>
+				</section>
+
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## REST
+
+							* Non breaking changes are trivial
+							* Allows upgrading independently
+							* Stronger statement on backwards compatibility
+								* When we were small, not so important
+								* Now, very important
+							* Opens the tech stack more
+
+							Notes:
+							What are the advantages of REST...
+							Non breaking changes are trivial
+							REST makes it possible to evolve APIs safely and without breaking them
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## REST
+
+							* More lightweight to create
+							* Lots of modern tooling, lots of options
+							* No clients
+							* Brings a high-level simplicity across all our APIs
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## REST - The Bad
+
+							* Less tooling for formal contracts
+							* No clients means some code duplication across users
+						</script>
+					</section>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:" data-background="#ffffff">
+					<script type="text/template">
+						### Service Calling Made Easy
+
+						![REST vs SOAP](images/rest-vs-soap-2.png)
+						![REST vs SOAP](images/rest-vs-soap-1.png)
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:" data-background="#ffffff">
+					<script type="text/template">
+						## XML API vs JSON API
+
+						[http://tinyurl.com/xml-api-vs-json-api](http://tinyurl.com/xml-api-vs-json-api)
+
+						![JSON API vs XML API](images/json-api-vs-xml-api.png)
+
+						Notes:
+						XML API vs JSON API on Google Trends
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## REST - High Level
+
+						* More autonomous teams
+						* More things built like SaaS
+						* Give the business more options
+						* Accessible through the browser
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## The Promise of REST?
+
+						Cacheable
+
+						Stateless
+
+						Scalable
+
+						Fault Tolerant
+
+						Recoverable
+
+						Loosely coupled
+
+						Secure
+
+						Notes:
+						That’s a lot of cool stuff REST is promising us!!!
+						And we’ll talk about each of these points today.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						### The REST Acronym
+
+						> &ldquo;The name **‘Representational State Transfer’** is intended to evoke
+						> an image of how a well-designed Web application behaves: a network of web
+						> pages (a virtual state-machine), where the user progresses through the
+						> application by selecting links (state transitions), resulting in the next
+						> page (representing the next state of the application) being transferred
+						> to the user and rendered for their use.&rdquo;
+
+						<p align="right">*Roy Fielding*</p>
+
+						Notes:
+						It’s worth pointing out that the user might be a human or a machine.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						### What is REST?
+
+						> &ldquo;REST provides a set of architectural constraints that, when applied
+						> as a whole, emphasizes scalability of component interactions, generality of
+						> interfaces, independent deployment of components, and intermediary
+						> components to reduce interaction latency, enforce security, and encapsulate
+						> legacy systems.&rdquo;
+
+						<p align="right">*Roy Fielding*</p>
+
+						Notes:
+						REST and architecture style based on constraints
+						In order to gain everything that REST promises, we should apply these constraints as a whole.
+					</script>
+				</section>
+
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## The REST Constraints
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C1. Client Server
+
+							A client is a triggering process
+
+							A server is a reactive process
+
+							Clients make requests that trigger reactions from servers
+
+							A client initiates activity at times of its choosing
+
+							A server waits for requests to be made and then reacts to them
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/net_arch_styles.htm#sec_3_4_1">Reference</a></small></p>
+
+							Notes:
+							We said that REST is based on constraints! Let’s see the first one! We can’t have REST if we don’t have a server and a client.
+
+							A server component, offering a set of services, listens for requests upon those services. A client component, desiring that a service be performed, sends a request to the server via a connector. The server either rejects or performs the request and sends a response back to the client.
+
+							A client is a triggering process; a server is a reactive process. Clients make requests that trigger reactions from servers. Thus, a client initiates activity at times of its choosing; it often then delays until its request has been serviced. On the other hand, a server waits for requests to be made and then reacts to them. A server is usually a non-terminating process and often provides service to more than one client.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C1. Client Server
+
+							Separation of concerns
+
+							Separate the UI from Data Storage
+
+							* Improve the portability of the UI
+							* Improve scalability by simplifying the server components
+							* Allows the components to evolve independently
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_2">Reference</a></small></p>
+
+							Notes:
+							Separation of concerns is the principle behind the client-server constraints.
+
+							By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
+
+							Perhaps most significant to the Web, however, is that the separation allows the components to evolve independently!
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C2. Stateless
+
+							Communication must be stateless in nature
+							Each request from the client to server must contain all of the info necessary to understand the request
+							Requests cannot take advantage  of any stored context on the server
+							Session state is kept entirely on the client
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3">Reference</a></small></p>
+
+							Notes:
+							We next add a constraint to the client-server interaction:
+							Communication must be stateless in nature, such that each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C2. Stateless
+
+							* Visibility
+							* Reliability
+							* Scalability
+
+							* Tradeoffs
+								* Network performance
+								* Reduce the server’s control over consistent application behaviour
+								* Multiple client versions
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3">Reference</a></small></p>
+
+							Notes:
+							This constraint induces the properties of visibility, reliability, and scalability.
+
+							Visibility is improved because a monitoring system does not have to look beyond a single request in order to determine the full nature of the request.
+
+							Reliability is improved because it eases the task of recovering from partial failures.
+
+							Scalability is improved because not having to store state between requests allows the server component to quickly free resources, and further simplifies implementation because the server doesn't have to manage resource usage across requests.
+
+							Like most architectural choices, the stateless constraint reflects a design trade-off. The disadvantage is that it may decrease network performance by increasing the repetitive data (per-interaction overhead) sent in a series of requests, since that data cannot be left on the server in a shared context. In addition, placing the application state on the client-side reduces the server's control over consistent application behavior, since the application becomes dependent on the correct implementation of semantics across multiple client versions.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C3. Cache
+
+							Label data as cacheable or non-cacheable
+
+							Potential of completely eliminate some interactions
+
+							Improve efficiency, scalability and user-perceived performance
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_4">Reference</a></small></p>
+
+							Notes:
+							In order to improve network efficiency, REST adds the cache constraints. Cache constraints require that the data within a response to a request be implicitly or explicitly labeled as cacheable or non-cacheable. If a response is cacheable, then a client cache is given the right to reuse that response data for later, equivalent requests.
+
+							The advantage of adding cache constraints is that they have the potential to partially or completely eliminate some interactions, improving efficiency, scalability, and user-perceived performance by reducing the average latency of a series of interactions. The tradeoff, however, is that a cache can decrease reliability if stale data within the cache differs significantly from the data that would have been obtained had the request been sent directly to the server.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C4. Uniform Interface
+
+							REST is defined by four interface constraints:
+
+							* identification of resources
+							* manipulation of resources through representations
+							* self-descriptive messages
+							* hypermedia as the engine of application state
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Reference</a></small></p>
+
+							Notes:
+							The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on a uniform interface between components.
+
+							By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the visibility of interactions is improved.
+
+							Implementations are decoupled from the services they provide, which encourages independent evolvability.
+
+							The trade-off, though, is that a uniform interface degrades efficiency, since information is transferred in a standardized form rather than one which is specific to an application's needs. The REST interface is designed to be efficient for large-grain hypermedia data transfer, optimizing for the common case of the Web, but resulting in an interface that is not optimal for other forms of architectural interaction.
+
+							In order to obtain an uniform interface, multiple architectural constraints are needed to guide the behavior of components. REST is defined by four interface constraints: identification of resources; manipulation of resources through representations; self-descriptive messages; and, hypermedia as the engine of application state
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C5. Layered System
+
+							Architecture composed by hierarchical layers
+
+							Each component cannot “see” beyond the immediate layer
+
+							Layers can encapsulate legacy service
+
+							Protect new services from legacy clients
+
+							Simplifying components
+
+							Allow enforcing security policies
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6">Reference</a></small></p>
+
+							Notes:
+							The layered system style allows an architecture to be composed of hierarchical layers by constraining component behavior such that each component cannot "see" beyond the immediate layer with which they are interacting.
+
+							By restricting knowledge of the system to a single layer, we place a bound on the overall system complexity and promote substrate independence. Layers can be used to encapsulate legacy services and to protect new services from legacy clients, simplifying components by moving infrequently used functionality to a shared intermediary. Intermediaries can also be used to improve system scalability by enabling load balancing of services across multiple networks and processors.
+
+							Such layers also allow security policies to be enforced on data crossing the organizational boundary, as is required by firewalls.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C5. Layered System
+
+							Add overhead and latency to the processing of data
+
+							Reduce user-perceived performance
+
+							Caching is really important
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6">Reference</a></small></p>
+
+							Notes:
+							The primary disadvantage of layered systems is that they add overhead and latency to the processing of data, reducing user-perceived performance. For a network-based system that supports cache constraints, this can be offset by the benefits of shared caching at intermediaries.
+
+							Placing shared caches at the boundaries of an organizational domain can result in significant performance benefits.
+						</script>
+					</section>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## REST Key Concepts
+
+						Notes:
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Resource
+
+						Any info that can be named can be a resource
+
+						Any concept that might be the target of an author’s hypertext reference
+
+						A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping
+
+						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1">Reference</a></small></p>
+						Notes:
+
+						The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g. "today's weather in Berlin"), a collection of other resources, a non-virtual object (e.g. a person), and so on.
+
+						In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource. A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
+					</script>
+				</section>
+
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Resource Identifiers
+
+							REST uses a resource identifier to identify the particular resource involved in an interaction
+
+							Generic interface for accessing and manipulating the value set of a resource
+
+							REST relies on the author choosing a resource identifier that best fits the concept being identified
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1">Reference</a></small></p>
+							Notes:
+
+							REST uses a resource identifier to identify the particular resource involved in an interaction between components.
+
+							REST connectors provide a generic interface for accessing and manipulating the value set of a resource, regardless of
+							how the membership function is defined or the type of software that is handling the request.
+
+							The naming authority that assigned the resource identifier, making it possible to reference the resource, is
+							responsible for maintaining the semantic validity of the mapping over time (i.e., ensuring that the membership function does not change).
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Resource Identifiers
+
+							`/index.php/action=getpost&id=3`
+
+							`/default/post/2/4/1/size`
+
+							~~Cachable?~~
+
+							~~Scalable?~~
+
+							~~Readable?~~
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Resource Identifiers
+
+							`/posts`
+
+							<small>get all the posts</small>
+
+							`/posts/5/photos/3/comments/1`
+
+							<small>get the first comment of the third photo for the fifth post</small>
+
+							`/posts/5/photos/3/comments`
+
+							<small>get all the comments of the thirds photo for the fifth post</small>
+
+							**Cachable! Scalable! Readable!**
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Resource Identifiers - Filtering
+
+							✘ `/posts/order/size/limit/4`
+
+							✘ `/posts/limit/5/order/size`
+
+							✔︎ `/posts?order=size&limit=4`
+
+							✔︎ `/posts?limit=5&order=size`
+
+							Notes:
+							Filter through a Query String, not the URI
+						</script>
+					</section>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Representations
+
+						A representation is a sequence of bytes, plus representation metadata to describe the bytes
+
+						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
+						Notes:
+						REST components perform actions on a resource by using a representation to capture the current or intended state of that
+						resource and transferring that representation between components. A representation is a sequence of bytes,
+						plus representation metadata to describe those bytes.
+
+						Other commonly used but less precise names for a representation include: document, file, and HTTP message entity, instance, or variant.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Content Negotiation
+
+						If the value set of a resource at a given time consists of multiple representations, content negotiation may be used to select the best representation for inclusion in a given message.
+
+						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Media Types
+
+						The data format of a representation
+
+						A representation is processed according to the control data of the message and the nature of the media type
+
+						Some media types are intended for automated processing, some to be rendered for viewing by an user, few, capable of both
+
+						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
+						Notes:
+						The data format of a representation is known as a media type. A representation can be included in a message and processed by the recipient according to the control data of the message and the nature of the media type. Some media types are intended for automated processing, some are intended to be rendered for viewing by a user, and a few are capable of both. Composite media types can be used to enclose multiple representations in a single message.
+
+						The design of a media type can directly impact the user-perceived performance of a distributed hypermedia system. Any data that must be received before the recipient can begin rendering the representation adds to the latency of an interaction. A data format that places the most important rendering information up front, such that the initial information can be incrementally rendered while the rest of the information is being received, results in much better user-perceived performance than a data format that must be entirely received before rendering can begin.
+
+						For example, a Web browser that can incrementally render a large HTML document while it is being received provides significantly better user-perceived performance than one that waits until the entire document is completely received prior to rendering, even though the network performance is the same.
+					</script>
+				</section>
+
+
+				<section>
+					<section data-markdown data-separator-notes="^Notes:" data-background="#ffffff">
+						<script type="text/template">
+							## Richardson Maturity Model
+
+							![Richardson Maturity Model](images/richardson.png)
+
+							<p align="right"><small><a href="http://martinfowler.com/articles/richardsonMaturityModel.html">More Info</a></small></p>
+							Notes:
+							How do we measure how RESTful our API is?
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Level 0: The Swamp of Pox
+
+							One URI, one HTTP method
+
+							XML-RPC / SOAP / POX
+
+							Giant “black box”
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Level 1: Resources
+
+							Each resource has an unique URI
+
+							Single HTTP verb (usually POST or GET)
+
+							Verbs have no meaning, used to tunnel over HTTP
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Level 2: HTTP Verbs
+
+							Many URIs, using multiple verbs
+
+							Correct use of response codes
+
+							Exposes state, not behavior
+
+							CRUD Services
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Level 3: Hypermedia Controls
+
+							Resources are self-describing
+
+							Hypermedia As The Engine Of Application State (HATEOAS)
+
+							Exposes state and behavior
+						</script>
+					</section>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						> &ldquo;Our nature consist in motion; complete **REST** is death.&rdquo;
+
+						<p align="right">*Blaise Pascal*</p>
+
+						Notes:
+						Doing complete REST is hard. Some guys are pessimistic about this… like Blaise Pascal...
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Can we name our API RESTful?
+
+						> &ldquo;What needs to be done to make the REST architectural style clear
+						> on the notion that **hypertext is a constraint**? In other words, if the
+						> engine of application state (and hence the API) is **NOT being driven by
+						> hypertext**, then it cannot be RESTful and **cannot be a REST API**.
+						> Period. Is there some broken manual somewhere that needs to be fixed?&rdquo;
+
+						<p align="right">*Roy Fielding*</p>
+
+						Notes:
+						But if we are not doing complete REST, can we say that our API is RESTful?
+
+						Roy Fielding was explicit about it!
+
+						This slide focuses on Level 3… the which is the hardest to implement...
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						> &ldquo;Believe in yourself, and the REST will fall into place. Have
+						> faith in your own abilities, work hard, and there is nothing you cannot
+						> accomplish.&rdquo;
+
+						<p align="right">*Brad Henry*</p>
+
+						Notes:
+						So what can we do?
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:" data-background="#b5533c" data-background-transition="zoom">
+					<script type="text/template">
+						## Our REST approach
+
+						We prefer REST-based APIs with JSON payloads
+
+						We prefer systems to be truly RESTful
+
+						**Our goal:**
+
+						To build interoperating distributed systems that can be evolved in parallel
+						by different teams while continuing to work.
+
+						Notes:
+
+						We prefer REST-based APIs with JSON payloads due to their weak type system
+						instead of SOAP with it’s strong type system.
+
+						We prefer systems to be truly RESTful, not just JSON RPC, since the goals
+						of REST are the same as our goals: to build interoperating distributed
+						systems that can be evolved in parallel by different teams while
+						continuing to work.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:" data-background="#4d7e65" data-background-transition="zoom">
+					<script type="text/template">
+						## API Design Principles
+
+						API-first
+
+						Peer review by the API Guild
+
+						See the swagger-editor
+
+						Central place for documentation
+
+						Notes:
+
+						We prefer peer-reviewed, API-first.  This means that APIs are developed outside
+						code, for example using Swagger (see https://github.com/sarnowski/swagger1st/
+						or https://github.com/swagger-api/swagger-editor or https://github.com/swagger-api/swagger-codegen).
+
+						Our APIs need to last for a long time. APIs can only be evolved in certain ways,
+						bigger changes are hard and expensive, and our APIs are the most pure expression
+						of what our systems do. So we prefer APIs to be designed outside of code at first,
+						and ongoing documentation to be generated from the code itself. API design is hard
+						work and takes time, and benefits from peer review. We want our APIs to all be
+						similar in tone, and we need to establish and agree to standards for how to do this.
+
+						We will host API documentation for all our APIs in a central, searchable place.
+
+						Documentation should always provide examples.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Robustness Principle - aka Postel’s Law
+
+						> &ldquo;Be liberal in what you accept, be conservative in what you send&rdquo;
+
+						<p align="right">[*RFC 1122*](http://www.rfc-editor.org/rfc/rfc1122.txt)</p>
+
+						* Ignore unknown fields in JSON payload
+						* Evolve by adding optional fields
+						* No need for versioning your API
+
+
+						Notes:
+
+						Our APIs should obey Postel's Law (aka the Robustness Principle):
+						Be conservative in what you send, be liberal in what you accept.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## API Guild
+
+						Reviews the API
+
+						Set of best practices
+
+						Trainings and certifications on API Design
+
+						Notes:
+
+						The review will be done by the members of the API Guild. API Guild had its kick off
+						meeting in the middle of March. The members of the Guild are Zalando people passionate
+						about REST.
+
+						We started as a small group of people, and in the future we will grow a lot.
+						Everybody should be able to join the API Guild after some training.
+
+						API Guild will provide guidance and support to the ones who want to create APIs.
+						We will also review the APIs. And create a document with best practices to guide
+						the developers when creating APIs. Some of these best practices will be optional,
+						some of them mandatory.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## SaaS
+
+						Offer SaaS to 3rd parties
+
+						Consider any other system a 3rd party with regards to API structure, resilience and service level
+
+						AWS pushes us that way
+
+						Notes:
+						Build your services in a way that it would be possible to offer them as a SaaS solution to 3rd parties.
+
+						In fact consider any other system a 3rd party with regards to API structure, resilience and service level.
+
+						This is not so hard compared to a few years ago. AWS pushes us this way, the internet model scales,
+						and we are working on a security model which allows our services to be on the open Internet.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Security
+
+						Always use SSL
+
+						Make sure the caller of your service is authenticated and authorised
+
+						Notes:
+						Always use SSL and make sure the caller of your service is authenticated and authorized.
+						A security concept for how to do this is underway.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Implementation Guidelines
+
+						### Idempotent
+						Make service endpoints idempotent
+
+
+						### Immutability
+						Prefer immutability
+
+						Notes:
+
+						Idempotent
+
+						Whenever possible and reasonable, make service endpoints idempotent. This means that an operation will produce the same results if executed once or multiple times. In a distributed system, things fail in lots of ways, and when a client sees a failure, the core call may have failed -- the failure could have occurred in the network late in the process. So it is helpful if a client can try again, even for stateful operations. This has some deep impacts; for example it may mean that the client should generate a unique id when putting new data into a service endpoint, rather than relying on the service to do it. This might imply that the calling client needs to, for example, be able to generate a UUID.
+
+						Immutable
+
+						Prefer immutability whenever possible. This is a key concept from Effective Java, and languages like Scala and Clojure have stronger support for this than Java. (See Does Scala == Effective Java? - http://grahamhackingscala.blogspot.de/2011/01/does-scala-equal-effective-java-bloch.html ) Immutability tends to result in fewer bugs and make it easier to prove that a program is correct.
+						Immutable things are automatically thread safe, with no synchronization required.
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						> &ldquo;If you find yourself in need of a batch operation, then most likely you just haven’t defined enough resources.&rdquo;
+
+						<p align="right">*Roy Fielding*</p>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## References
+
+						* [Architectural Styles and the Design of Network-based Software Architectures](http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+						* [InfoQ eMag: Web APIs: From Start to Finish](http://www.infoq.com/minibooks/emag-web-api)
+						* [REST APIs must be hypertext-driven](http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven)
+						* [Haters gonna HATEOAS](http://timelessrepo.com/haters-gonna-hateoas)
+						* [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html)
+						* [Versioning REST Web Services](http://barelyenough.org/blog/2008/05/versioning-rest-web-services/)
+						* [The HTTP OPTIONS method and potential for self-describing RESTful APIs](http://zacstewart.com/2012/04/14/http-options-method.html)
+						* [From REST to HATEOAS](http://www.smartjava.org/content/presentation-rest-hateoas)
+						* [REST and HATEOAS](http://www.slideshare.net/XEmacs/representational-state-transfer-rest-and-hateoas)
+
+						Notes:
+						In reality, the effort required to design something is inversely proportional to the simplicity of the result.
+
+						REST is software design on the scale of decades: every detail is intended to promote software longevity and
+						independent evolution. Many of the constraints are directly opposed to short-term efficiency.
+						Unfortunately, people are fairly good at short-term design, and usually awful at long-term design.
+					</script>
+				</section>
+
+				<section data-background="images/thats-all-folks.jpg"></section>
 
 				<section>
 					<section id="fragments">
@@ -176,202 +935,6 @@
 						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
 					</p>
 				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							<tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							<tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							<tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
-
 			</div>
 
 		</div>

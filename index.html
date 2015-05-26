@@ -149,6 +149,11 @@
 
 						![REST vs SOAP](images/rest-vs-soap-2.png)
 						![REST vs SOAP](images/rest-vs-soap-1.png)
+
+						Notes:
+						Looking at this illustrations we say that SOAP is much more polite than REST.
+
+						Also SOAP is much more verbose!
 					</script>
 				</section>
 
@@ -195,7 +200,8 @@
 						Secure
 
 						Notes:
-						That’s a lot of cool stuff REST is promising us!!!
+						REST is promising us a lot of cool stuff!!
+
 						And we’ll talk about each of these points today.
 					</script>
 				</section>
@@ -215,6 +221,8 @@
 
 						Notes:
 						It’s worth pointing out that the user might be a human or a machine.
+
+						TODO: do another slide with a diagram to visualise this definition
 					</script>
 				</section>
 
@@ -232,6 +240,7 @@
 
 						Notes:
 						REST and architecture style based on constraints
+
 						In order to gain everything that REST promises, we should apply these constraints as a whole.
 					</script>
 				</section>
@@ -261,9 +270,11 @@
 							Notes:
 							We said that REST is based on constraints! Let’s see the first one! We can’t have REST if we don’t have a server and a client.
 
-							A server component, offering a set of services, listens for requests upon those services. A client component, desiring that a service be performed, sends a request to the server via a connector. The server either rejects or performs the request and sends a response back to the client.
+							A server component, offering a set of services, listens for requests upon those services. A client component, desiring that a service be performed, sends a request to the server via a connector. The server either rejects or performs the request and sends a response back to the client
 
-							A client is a triggering process; a server is a reactive process. Clients make requests that trigger reactions from servers. Thus, a client initiates activity at times of its choosing; it often then delays until its request has been serviced. On the other hand, a server waits for requests to be made and then reacts to them. A server is usually a non-terminating process and often provides service to more than one client.
+							A client is a triggering process; a server is a reactive process. Clients make requests that trigger reactions from servers
+
+							On the other hand, a server waits for requests to be made and then reacts to them
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">
@@ -281,6 +292,8 @@
 
 							Separate the UI from Data Storage
 
+							### Advantages
+
 							* Improve the portability of the UI
 							* Improve scalability by simplifying the server components
 							* Allows the components to evolve independently
@@ -290,7 +303,8 @@
 							Notes:
 							Separation of concerns is the principle behind the client-server constraints.
 
-							By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
+							By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface
+							across multiple platforms and improve scalability by simplifying the server components.
 
 							Perhaps most significant to the Web, however, is that the separation allows the components to evolve independently!
 						</script>
@@ -308,8 +322,12 @@
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3">Reference</a></small></p>
 
 							Notes:
-							We next add a constraint to the client-server interaction:
-							Communication must be stateless in nature, such that each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
+							We next add a new constraint to the client-server interaction:
+
+							Communication must be stateless in nature, such that each request from client to server must contain all of the
+							information necessary to understand the request, and cannot take advantage of any stored context on the server.
+
+							Session state is therefore kept entirely on the client.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">

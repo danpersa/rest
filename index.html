@@ -266,7 +266,13 @@
 							A client is a triggering process; a server is a reactive process. Clients make requests that trigger reactions from servers. Thus, a client initiates activity at times of its choosing; it often then delays until its request has been serviced. On the other hand, a server waits for requests to be made and then reacts to them. A server is usually a non-terminating process and often provides service to more than one client.
 						</script>
 					</section>
-
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C1. Client Server
+							![Client Server Constraint](images/rest-client-server-constraint.svg)
+							Notes:
+						</script>
+					</section>
 					<section data-markdown data-separator-notes="^Notes:">
 						<script type="text/template">
 							## C1. Client Server
@@ -306,7 +312,13 @@
 							Communication must be stateless in nature, such that each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
 						</script>
 					</section>
-
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C2. Stateless
+							![Stateless Constraint](images/rest-stateless-constraint.svg)
+							Notes:
+						</script>
+					</section>
 					<section data-markdown data-separator-notes="^Notes:">
 						<script type="text/template">
 							## C2. Stateless
@@ -343,7 +355,9 @@
 
 							Potential of completely eliminate some interactions
 
-							Improve efficiency, scalability and user-perceived performance
+							Improves efficiency, scalability and user-perceived performance
+
+							Degrades reliability
 
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_4">Reference</a></small></p>
 
@@ -351,6 +365,49 @@
 							In order to improve network efficiency, REST adds the cache constraints. Cache constraints require that the data within a response to a request be implicitly or explicitly labeled as cacheable or non-cacheable. If a response is cacheable, then a client cache is given the right to reuse that response data for later, equivalent requests.
 
 							The advantage of adding cache constraints is that they have the potential to partially or completely eliminate some interactions, improving efficiency, scalability, and user-perceived performance by reducing the average latency of a series of interactions. The tradeoff, however, is that a cache can decrease reliability if stale data within the cache differs significantly from the data that would have been obtained had the request been sent directly to the server.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C3. Cache
+							![Cache Constraint](images/rest-caching-constraint.svg)
+							Notes:
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C4. Uniform Interface
+
+							Simplified architecture
+
+							Improves visibility
+
+							Decouples implementation
+
+							Independent evolvability
+
+							Degraded efficiency
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Reference</a></small></p>
+
+							Notes:
+							The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on a uniform interface between components.
+
+							By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the visibility of interactions is improved.
+
+							Implementations are decoupled from the services they provide, which encourages independent evolvability.
+
+							The trade-off, though, is that a uniform interface degrades efficiency, since information is transferred in a standardized form rather than one which is specific to an application's needs. The REST interface is designed to be efficient for large-grain hypermedia data transfer, optimizing for the common case of the Web, but resulting in an interface that is not optimal for other forms of architectural interaction.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C4. Uniform Interface
+
+							![Uniform Interface Constraint](images/rest-uniform-interface-constraint.svg)
+							Notes:
 						</script>
 					</section>
 
@@ -368,13 +425,6 @@
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Reference</a></small></p>
 
 							Notes:
-							The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on a uniform interface between components.
-
-							By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the visibility of interactions is improved.
-
-							Implementations are decoupled from the services they provide, which encourages independent evolvability.
-
-							The trade-off, though, is that a uniform interface degrades efficiency, since information is transferred in a standardized form rather than one which is specific to an application's needs. The REST interface is designed to be efficient for large-grain hypermedia data transfer, optimizing for the common case of the Web, but resulting in an interface that is not optimal for other forms of architectural interaction.
 
 							In order to obtain an uniform interface, multiple architectural constraints are needed to guide the behavior of components. REST is defined by four interface constraints: identification of resources; manipulation of resources through representations; self-descriptive messages; and, hypermedia as the engine of application state
 						</script>
@@ -396,6 +446,8 @@
 
 							Allow enforcing security policies
 
+							Intermediaries can be used to improve system scalability by enabling load balancing
+
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6">Reference</a></small></p>
 
 							Notes:
@@ -404,6 +456,14 @@
 							By restricting knowledge of the system to a single layer, we place a bound on the overall system complexity and promote substrate independence. Layers can be used to encapsulate legacy services and to protect new services from legacy clients, simplifying components by moving infrequently used functionality to a shared intermediary. Intermediaries can also be used to improve system scalability by enabling load balancing of services across multiple networks and processors.
 
 							Such layers also allow security policies to be enforced on data crossing the organizational boundary, as is required by firewalls.
+						</script>
+					</section>
+
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## C5. Layered System
+							![Layered System Constraint](images/rest-layered-system-constraint.svg)
+							Notes:
 						</script>
 					</section>
 
@@ -435,23 +495,51 @@
 					</script>
 				</section>
 
-				<section data-markdown data-separator-notes="^Notes:">
-					<script type="text/template">
-						## Resource
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Resource
 
-						Any info that can be named can be a resource
+							Any info that can be named can be a resource
 
-						Any concept that might be the target of an author’s hypertext reference
+							Any concept that might be the target of an author’s hypertext reference
 
-						A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping
+							A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping
 
-						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1">Reference</a></small></p>
-						Notes:
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1">Reference</a></small></p>
+							Notes:
 
-						The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g. "today's weather in Berlin"), a collection of other resources, a non-virtual object (e.g. a person), and so on.
+							The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g. "today's weather in Berlin"), a collection of other resources, a non-virtual object (e.g. a person), and so on.
 
-						In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource. A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
-					</script>
+							In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource. A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							```
+							     +---------+  +------------------------------+  +-------------+
+							     |         |  |                              |  |             |
+							     | /books  |  | /authors/{id}/favorite-books |  | /books/{id} |
+							     |         |  |                              |  |             |
+							     +----+----+  +---------------+--------------+  +------+------+
+							          |                       |                        |
+							          |                       |                        |
+							      All Books             Author's Favorite        Book with id
+							      Resource              Books Resource             Resource
+							          |                       |                        |
+							          |                       |                        |
+							          |                       v                        |
+							          |                +------------+                  |
+							          |                |            |                  |
+							          +--------------> |  Books DB  | <----------------+
+							                           |            |
+							                           +------------+
+							```
+
+							Notes:
+							Let s take an example. In this diagram we have a database and three resources.
+						</script>
+					</section>
 				</section>
 
 				<section>
@@ -473,8 +561,7 @@
 							REST connectors provide a generic interface for accessing and manipulating the value set of a resource, regardless of
 							how the membership function is defined or the type of software that is handling the request.
 
-							The naming authority that assigned the resource identifier, making it possible to reference the resource, is
-							responsible for maintaining the semantic validity of the mapping over time (i.e., ensuring that the membership function does not change).
+							REST doesn't dictate URI choice. Leaves it to the application author
 						</script>
 					</section>
 
@@ -499,15 +586,15 @@
 
 							`/posts`
 
-							<small>get all the posts</small>
+							<small>all the posts resource</small>
 
 							`/posts/5/photos/3/comments/1`
 
-							<small>get the first comment of the third photo for the fifth post</small>
+							<small>the first comment of the third photo for the fifth post resource</small>
 
 							`/posts/5/photos/3/comments`
 
-							<small>get all the comments of the thirds photo for the fifth post</small>
+							<small>all the comments of the thirds photo for the fifth post resource</small>
 
 							**Cachable! Scalable! Readable!**
 						</script>
@@ -526,35 +613,107 @@
 							✔︎ `/posts?limit=5&order=size`
 
 							Notes:
-							Filter through a Query String, not the URI
+							It doesn't make sense to return all of the posts, using the posts resource. That's why we need to filter it.
+							The rule is that we should filter through a Query String, not the URI
 						</script>
 					</section>
 				</section>
 
-				<section data-markdown data-separator-notes="^Notes:">
-					<script type="text/template">
-						## Representations
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Representations
 
-						A representation is a sequence of bytes, plus representation metadata to describe the bytes
+							A representation captures the current or intended state of a resource
 
-						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
-						Notes:
-						REST components perform actions on a resource by using a representation to capture the current or intended state of that
-						resource and transferring that representation between components. A representation is a sequence of bytes,
-						plus representation metadata to describe those bytes.
+							A representation is a sequence of bytes, plus representation metadata to describe the bytes
 
-						Other commonly used but less precise names for a representation include: document, file, and HTTP message entity, instance, or variant.
-					</script>
+							A particular resource may have multiple representations
+
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
+							Notes:
+							REST components perform actions on a resource by using a representation to capture the current or intended state of that
+							resource and transferring that representation between components. A representation is a sequence of bytes,
+							plus representation metadata to describe those bytes.
+
+							Other commonly used but less precise names for a representation include: document, file, and HTTP message entity, instance, or variant.
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Representations
+							```
+							HTTP/1.1 200 OK
+							Content-length: 1234
+							Content-type: application/vnd.mycompany.customer+json
+
+							{
+								"name": "Forrest Gump",
+								"email": "forrest@gump.com"
+								"phone": "(123) 456-789"
+							}
+							```
+
+							```
+							HTTP/1.1 200 OK
+							Content-length: 1234
+							Content-type: text/vcard
+
+							BEGIN:VCARD
+							VERSION:4.0
+							N:Gump;Forrest;;;
+							FN:Forrest Gump
+							ORG:Bubba Gump Shrimp Co.
+							TEL;TYPE=home,voice;VALUE=uri:tel:+1-404-555-1212
+							EMAIL:forrestgump@example.com
+							REV:20080424T195243Z
+							END:VCARD
+							```
+							Notes:
+
+						</script>
+					</section>
 				</section>
 
-				<section data-markdown data-separator-notes="^Notes:">
-					<script type="text/template">
-						## Content Negotiation
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Content Negotiation
 
-						If the value set of a resource at a given time consists of multiple representations, content negotiation may be used to select the best representation for inclusion in a given message.
+							If the value set of a resource at a given time consists of multiple representations, content negotiation may be used to select the best representation for inclusion in a given message.
 
-						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
-					</script>
+							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
+
+							Notes:
+
+							If the value set of a resource at a given time consists of multiple representations, content negotiation may be used to select the best representation for inclusion in a given message.
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							## Content Negociation
+							```
+							GET /customers/1234 HTTP/1.1
+							Host: example.com
+							Accept: application/vnd.mycompany.customer+json
+							```
+
+							```
+							GET /customers/1234 HTTP/1.1
+							Host: example.com
+							Accept: text/vcard
+							```
+
+							```
+							GET /customers/1234 HTTP/1.1
+							Host: example.com
+							Accept: application/vnd.mycompany.customer+json;q=0.5, text/vcard
+							```
+
+							Notes:
+							How do we do this? The client specifies an Accept header
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown data-separator-notes="^Notes:">
@@ -866,7 +1025,7 @@
 						* [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html)
 						* [Versioning REST Web Services](http://barelyenough.org/blog/2008/05/versioning-rest-web-services/)
 						* [The HTTP OPTIONS method and potential for self-describing RESTful APIs](http://zacstewart.com/2012/04/14/http-options-method.html)
-						* [From REST to HATEOAS](http://www.smartjava.org/content/presentation-rest-hateoas)
+						* [A Little Rest and Relaxation](http://www.slideshare.net/royfielding/a-little-rest-and-relaxation)
 						* [REST and HATEOAS](http://www.slideshare.net/XEmacs/representational-state-transfer-rest-and-hateoas)
 
 						Notes:

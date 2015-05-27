@@ -151,9 +151,9 @@
 						![REST vs SOAP](images/rest-vs-soap-1.png)
 
 						Notes:
-						Looking at this illustrations we say that SOAP is much more polite than REST.
+						Looking at this illustrations we can see that SOAP is much more polite than REST.
 
-						Also SOAP is much more verbose!
+						Also that SOAP is much more verbose!
 					</script>
 				</section>
 
@@ -230,8 +230,8 @@
 					<script type="text/template">
 						### What is REST?
 
-						> &ldquo;REST provides a set of architectural constraints that, when applied
-						> as a whole, emphasizes scalability of component interactions, generality of
+						> &ldquo;REST provides a set of architectural constraints that, when **applied
+						> as a whole**, emphasizes scalability of component interactions, generality of
 						> interfaces, independent deployment of components, and intermediary
 						> components to reduce interaction latency, enforce security, and encapsulate
 						> legacy systems.&rdquo;
@@ -270,7 +270,8 @@
 							Notes:
 							We said that REST is based on constraints! Let’s see the first one! We can’t have REST if we don’t have a server and a client.
 
-							A server component, offering a set of services, listens for requests upon those services. A client component, desiring that a service be performed, sends a request to the server via a connector. The server either rejects or performs the request and sends a response back to the client
+							A server component, offering a set of services, listens for requests upon those services. A client component, desiring that a service
+							be performed, sends a request to the server via a connector. The server either rejects or performs the request and sends a response back to the client
 
 							A client is a triggering process; a server is a reactive process. Clients make requests that trigger reactions from servers
 
@@ -306,7 +307,7 @@
 							By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface
 							across multiple platforms and improve scalability by simplifying the server components.
 
-							Perhaps most significant to the Web, however, is that the separation allows the components to evolve independently!
+							The most significant to the Web is that the separation allows the components to evolve independently!
 						</script>
 					</section>
 
@@ -315,8 +316,11 @@
 							## C2. Stateless
 
 							Communication must be stateless in nature
+
 							Each request from the client to server must contain all of the info necessary to understand the request
+
 							Requests cannot take advantage  of any stored context on the server
+
 							Session state is kept entirely on the client
 
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3">Reference</a></small></p>
@@ -341,9 +345,11 @@
 						<script type="text/template">
 							## C2. Stateless
 
-							* Visibility
-							* Reliability
-							* Scalability
+							Visibility
+
+							Reliability
+
+							Scalability
 
 							* Tradeoffs
 								* Network performance
@@ -355,13 +361,20 @@
 							Notes:
 							This constraint induces the properties of visibility, reliability, and scalability.
 
-							Visibility is improved because a monitoring system does not have to look beyond a single request in order to determine the full nature of the request.
+							Visibility is improved because a monitoring system does not have to look beyond a single request in order to
+							determine the full nature of the request.
 
 							Reliability is improved because it eases the task of recovering from partial failures.
 
-							Scalability is improved because not having to store state between requests allows the server component to quickly free resources, and further simplifies implementation because the server doesn't have to manage resource usage across requests.
+							Scalability is improved because not having to store state between requests allows the server component to quickly
+							free resources, and further simplifies implementation because the server doesn't have to manage resource usage across requests.
 
-							Like most architectural choices, the stateless constraint reflects a design trade-off. The disadvantage is that it may decrease network performance by increasing the repetitive data (per-interaction overhead) sent in a series of requests, since that data cannot be left on the server in a shared context. In addition, placing the application state on the client-side reduces the server's control over consistent application behavior, since the application becomes dependent on the correct implementation of semantics across multiple client versions.
+							Like most architectural choices, the stateless constraint reflects a design trade-off. The disadvantage is that it may
+							decrease network performance by increasing the repetitive data sent in a series of
+							requests, since that data cannot be left on the server in a shared context.
+
+							In addition, placing the application state on the client-side reduces the server's control over consistent application
+							behavior, since the application becomes dependent on the correct implementation of semantics across multiple client versions.
 						</script>
 					</section>
 
@@ -382,7 +395,9 @@
 							Notes:
 							In order to improve network efficiency, REST adds the cache constraints. Cache constraints require that the data within a response to a request be implicitly or explicitly labeled as cacheable or non-cacheable. If a response is cacheable, then a client cache is given the right to reuse that response data for later, equivalent requests.
 
-							The advantage of adding cache constraints is that they have the potential to partially or completely eliminate some interactions, improving efficiency, scalability, and user-perceived performance by reducing the average latency of a series of interactions. The tradeoff, however, is that a cache can decrease reliability if stale data within the cache differs significantly from the data that would have been obtained had the request been sent directly to the server.
+							The advantage of adding cache constraints is that they have the potential to partially or completely eliminate some interactions, improving efficiency, scalability, and user-perceived performance by reducing the average latency of a series of interactions.
+
+							The tradeoff, however, is that a cache can decrease reliability if stale data within the cache differs significantly from the data that would have been obtained if the request would have been sent directly to the server.
 						</script>
 					</section>
 
@@ -410,13 +425,19 @@
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Reference</a></small></p>
 
 							Notes:
-							The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on a uniform interface between components.
+							The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on an uniform
+							interface between components.
 
-							By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the visibility of interactions is improved.
+							By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the
+							visibility of interactions is improved.
 
 							Implementations are decoupled from the services they provide, which encourages independent evolvability.
 
-							The trade-off, though, is that a uniform interface degrades efficiency, since information is transferred in a standardized form rather than one which is specific to an application's needs. The REST interface is designed to be efficient for large-grain hypermedia data transfer, optimizing for the common case of the Web, but resulting in an interface that is not optimal for other forms of architectural interaction.
+							The trade-off, though, is that a uniform interface degrades efficiency, since information is transferred in a standardized form rather than
+							one which is specific to an application's needs.
+
+							The REST interface is designed to be efficient for large-grain hypermedia data transfer, optimizing for the common case of the Web, but resulting
+							in an interface that is not optimal for other forms of architectural interaction.
 						</script>
 					</section>
 
@@ -435,16 +456,19 @@
 
 							REST is defined by four interface constraints:
 
-							* identification of resources
-							* manipulation of resources through representations
-							* self-descriptive messages
-							* hypermedia as the engine of application state
+							* Identification of resources
+							* Manipulation of resources through representations
+							* Self-descriptive messages
+							* Hypermedia as the engine of application state
 
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Reference</a></small></p>
 
 							Notes:
 
-							In order to obtain an uniform interface, multiple architectural constraints are needed to guide the behavior of components. REST is defined by four interface constraints: identification of resources; manipulation of resources through representations; self-descriptive messages; and, hypermedia as the engine of application state
+							In order to obtain an uniform interface, multiple architectural constraints are needed to guide the behavior of components.
+
+							REST is defined by four interface constraints: identification of resources; manipulation of resources through representations;
+							self-descriptive messages; and, hypermedia as the engine of application state
 						</script>
 					</section>
 
@@ -460,18 +484,22 @@
 
 							Protect new services from legacy clients
 
+							Intermediaries can be used to improve system scalability by enabling load balancing
+
 							Simplifying components
 
 							Allow enforcing security policies
 
-							Intermediaries can be used to improve system scalability by enabling load balancing
-
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6">Reference</a></small></p>
 
 							Notes:
-							The layered system style allows an architecture to be composed of hierarchical layers by constraining component behavior such that each component cannot "see" beyond the immediate layer with which they are interacting.
+							The layered system style allows an architecture to be composed of hierarchical layers by constraining component behavior such
+							that each component cannot "see" beyond the immediate layer with which they are interacting.
 
-							By restricting knowledge of the system to a single layer, we place a bound on the overall system complexity and promote substrate independence. Layers can be used to encapsulate legacy services and to protect new services from legacy clients, simplifying components by moving infrequently used functionality to a shared intermediary. Intermediaries can also be used to improve system scalability by enabling load balancing of services across multiple networks and processors.
+							By restricting knowledge of the system to a single layer, we place a bound on the overall system complexity and promote substrate
+							independence. Layers can be used to encapsulate legacy services and to protect new services from legacy clients, simplifying components
+							by moving infrequently used functionality to a shared intermediary. Intermediaries can also be used to improve system scalability by
+							enabling load balancing of services across multiple networks and processors.
 
 							Such layers also allow security policies to be enforced on data crossing the organizational boundary, as is required by firewalls.
 						</script>
@@ -498,9 +526,11 @@
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6">Reference</a></small></p>
 
 							Notes:
-							The primary disadvantage of layered systems is that they add overhead and latency to the processing of data, reducing user-perceived performance. For a network-based system that supports cache constraints, this can be offset by the benefits of shared caching at intermediaries.
+							The primary disadvantage of layered systems is that they add overhead and latency to the processing of data, reducing user-perceived performance.
 
-							Placing shared caches at the boundaries of an organizational domain can result in significant performance benefits.
+							For a network-based system that supports cache constraints, this can be offset by the benefits of shared caching at intermediaries.
+
+							Placing shared caches at the boundaries of the domain can result in significant performance benefits.
 						</script>
 					</section>
 				</section>
@@ -527,9 +557,12 @@
 							<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1">Reference</a></small></p>
 							Notes:
 
-							The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g. "today's weather in Berlin"), a collection of other resources, a non-virtual object (e.g. a person), and so on.
+							The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image,
+							a temporal service (e.g. "today's weather in Berlin"), a collection of other resources, a non-virtual object (e.g. a person), and so on.
 
-							In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource. A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
+							In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource.
+
+							A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">
@@ -577,7 +610,7 @@
 							REST uses a resource identifier to identify the particular resource involved in an interaction between components.
 
 							REST connectors provide a generic interface for accessing and manipulating the value set of a resource, regardless of
-							how the membership function is defined or the type of software that is handling the request.
+							the type of software that is handling the request.
 
 							REST doesn't dictate URI choice. Leaves it to the application author
 						</script>
@@ -689,6 +722,8 @@
 							```
 							Notes:
 
+							Here we have two representations of the same resource.
+
 						</script>
 					</section>
 				</section>
@@ -746,11 +781,24 @@
 
 						<p align="right"><small><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_2">Reference</a></small></p>
 						Notes:
-						The data format of a representation is known as a media type. A representation can be included in a message and processed by the recipient according to the control data of the message and the nature of the media type. Some media types are intended for automated processing, some are intended to be rendered for viewing by a user, and a few are capable of both. Composite media types can be used to enclose multiple representations in a single message.
+						The data format of a representation is known as a media type.
 
-						The design of a media type can directly impact the user-perceived performance of a distributed hypermedia system. Any data that must be received before the recipient can begin rendering the representation adds to the latency of an interaction. A data format that places the most important rendering information up front, such that the initial information can be incrementally rendered while the rest of the information is being received, results in much better user-perceived performance than a data format that must be entirely received before rendering can begin.
+						A representation can be included in a message and processed by the recipient according to the control data of
+						the message and the nature of the media type.
 
-						For example, a Web browser that can incrementally render a large HTML document while it is being received provides significantly better user-perceived performance than one that waits until the entire document is completely received prior to rendering, even though the network performance is the same.
+						Some media types are intended for automated processing, some are intended to be rendered for viewing by a user,
+						and a few are capable of both. Composite media types can be used to enclose multiple representations in a single message.
+
+						The design of a media type can directly impact the user-perceived performance of a distributed hypermedia system.
+						Any data that must be received before the recipient can begin rendering the representation adds to the latency of an interaction.
+
+						A data format that places the most important rendering information up front, such that the initial information can be
+						incrementally rendered while the rest of the information is being received, results in much better user-perceived performance
+						than a data format that must be entirely received before rendering can begin.
+
+						For example, a Web browser that can incrementally render a large HTML document while it is being received provides significantly
+						better user-perceived performance than one that waits until the entire document is completely received prior to rendering,
+						even though the network performance is the same.
 					</script>
 				</section>
 
@@ -1015,11 +1063,24 @@
 
 						Idempotent
 
-						Whenever possible and reasonable, make service endpoints idempotent. This means that an operation will produce the same results if executed once or multiple times. In a distributed system, things fail in lots of ways, and when a client sees a failure, the core call may have failed -- the failure could have occurred in the network late in the process. So it is helpful if a client can try again, even for stateful operations. This has some deep impacts; for example it may mean that the client should generate a unique id when putting new data into a service endpoint, rather than relying on the service to do it. This might imply that the calling client needs to, for example, be able to generate a UUID.
+						Whenever possible and reasonable, make service endpoints idempotent.
+
+						This means that an operation will produce the same results if executed once or multiple times.
+
+						In a distributed system, things fail in lots of ways, and when a client sees a failure, the core call may
+						have failed -- the failure could have occurred in the network late in the process.
+
+						So it is helpful if a client can try again, even for stateful operations. This has some deep impacts; for example
+						it may mean that the client should generate a unique id when putting new data into a service endpoint,
+						rather than relying on the service to do it.
+
+						This might imply that the calling client needs to, for example, be able to generate a UUID.
 
 						Immutable
 
-						Prefer immutability whenever possible. This is a key concept from Effective Java, and languages like Scala and Clojure have stronger support for this than Java. (See Does Scala == Effective Java? - http://grahamhackingscala.blogspot.de/2011/01/does-scala-equal-effective-java-bloch.html ) Immutability tends to result in fewer bugs and make it easier to prove that a program is correct.
+						Prefer immutability whenever possible. This is a key concept from Effective Java, and languages like
+						Scala and Clojure have stronger support for this than Java.
+						Immutability tends to result in fewer bugs and make it easier to prove that a program is correct.
 						Immutable things are automatically thread safe, with no synchronization required.
 					</script>
 				</section>

@@ -206,24 +206,95 @@
 					</script>
 				</section>
 
-				<section data-markdown data-separator-notes="^Notes:">
-					<script type="text/template">
-						### The REST Acronym
+				<section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							### The REST Acronym
 
-						> &ldquo;The name **‘Representational State Transfer’** is intended to evoke
-						> an image of how a well-designed Web application behaves: a network of web
-						> pages (a virtual state-machine), where the user progresses through the
-						> application by selecting links (state transitions), resulting in the next
-						> page (representing the next state of the application) being transferred
-						> to the user and rendered for their use.&rdquo;
+							> &ldquo;The name **‘Representational State Transfer’** is intended to evoke
+							> an image of how a well-designed Web application behaves: a network of web
+							> pages (a virtual state-machine), where the user progresses through the
+							> application by selecting links (state transitions), resulting in the next
+							> page (representing the next state of the application) being transferred
+							> to the user and rendered for their use.&rdquo;
 
-						<p align="right">*Roy Fielding*</p>
+							<p align="right">*Roy Fielding*</p>
 
-						Notes:
-						It’s worth pointing out that the user might be a human or a machine.
-
-						TODO: do another slide with a diagram to visualise this definition
-					</script>
+							Notes:
+							It’s worth pointing out that the user might be a human or a machine.
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							![REST Acronym Website](images/rest-acronym-website.svg)
+							Notes:
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							### Representation of the Post1 resource
+							```
+							<html>
+								<head>...</head>
+								<body>
+									<nav>
+										<a href="/index">Home</a>
+										<a href="/posts">Posts</a>
+										...
+									</nav>
+									...
+									<form action="/add-comment" method="POST">
+										<input ...
+									</form>
+								</body>
+							</html>
+							```
+							Notes:
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							![REST Acronym API](images/rest-acronym-api.svg)
+							Notes:
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							### Representation of the /blog/123/posts/post1 resource
+							```
+							Content-type: application/vnd.mycompany.post+json
+							{
+								id: "post1",
+								title: "The Post",
+								content: "...",
+								author: "blog/123/authors/dan"
+							}
+							```
+							Notes:
+						</script>
+					</section>
+					<section data-markdown data-separator-notes="^Notes:">
+						<script type="text/template">
+							### Representation of the /blog/123/pages/index resource
+							```
+							Content-type: application/vnd.mycompany.page+json
+							{
+								id: "index",
+								title: "The Index Page",
+								teaser: "blog/123/teasers/1234"
+								content: "...",
+								 [
+									{
+										display_name: "Contact",
+										id: "blog/123/pages/contact"
+									}
+									...
+								]
+							}
+							```
+							Notes:
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown data-separator-notes="^Notes:">

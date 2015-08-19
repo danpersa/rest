@@ -228,6 +228,14 @@
 						<script type="text/template">
 							![REST Acronym Website](images/rest-acronym-website.svg)
 							Notes:
+
+							Here we have a diagram showing a well designed Web application.
+							A network of web pages, where the user progresses through the application by selecting links.
+							Resulting in the next page being transferred to the user and rendered for their use.
+
+							But wait this is a regular web site :)
+
+							This is not a surprise, as we all know that Roy Fielding's REST model is based on the Web.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">
@@ -250,12 +258,22 @@
 							</html>
 							```
 							Notes:
+
+							And talking about representations: Here is how we would represent the web page.
+							What we can see here is some text. We all know that this text is a piece of HTML.
+							The browser knows that also. The browser knows the format of the html and it's able
+							to render it in a visual way. It knows that when it sees a form with input fields,
+							it should let the user put some input in there. HTML is a media type and we'll talk about
+							media type in more detail later.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">
 						<script type="text/template">
 							![REST Acronym API](images/rest-acronym-api.svg)
 							Notes:
+
+							The Web was the model for REST so REST the generalization of the Web model. Here is how we
+							would model a REST API with the same blog subject.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">
@@ -271,6 +289,9 @@
 							}
 							```
 							Notes:
+
+							Here is the representation of the post resource. It has a proprietary media type.
+							The same as with the browser, a client should know the format of this media type, in order to be able to render it.
 						</script>
 					</section>
 					<section data-markdown data-separator-notes="^Notes:">

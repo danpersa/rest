@@ -128,8 +128,8 @@
 
 							* More lightweight to create
 							* Lots of modern tooling, lots of options
+							* Accessible through the browser
 							* No clients
-							* Brings a high-level simplicity across all our APIs
 						</script>
 					</section>
 
@@ -139,6 +139,9 @@
 
 							* Less tooling for formal contracts
 							* No clients means some code duplication across users
+
+							Notes:
+							Open source as a way to share code
 						</script>
 					</section>
 				</section>
@@ -176,8 +179,12 @@
 
 						* More autonomous teams
 						* More things built like SaaS
-						* Give the business more options
-						* Accessible through the browser
+						* Brings a high-level simplicity across all our APIs
+
+						Notes:
+						- Which is also the goal of Radical Agility
+						- Important, as we are moving towards becoming a platform
+						- An uniform interface is one of the constraints of REST
 					</script>
 				</section>
 
@@ -856,6 +863,8 @@
 
 							Notes:
 							How do we do this? The client specifies an Accept header
+
+							Quality factors allow the user or user agent to indicate the relative degree of preference for that media-range, using the qvalue scale from 0 to 1
 						</script>
 					</section>
 				</section>
@@ -1036,7 +1045,7 @@
 
 						Peer review by the API Guild
 
-						See the swagger-editor
+						See the [swagger-editor](http://editor.swagger.io/)
 
 						Central place for documentation
 
@@ -1131,11 +1140,10 @@
 
 						Always use SSL
 
-						Make sure the caller of your service is authenticated and authorised
+						Make sure the caller of your service is authenticated and authorized
 
 						Notes:
 						Always use SSL and make sure the caller of your service is authenticated and authorized.
-						A security concept for how to do this is underway.
 					</script>
 				</section>
 
@@ -1145,7 +1153,6 @@
 
 						### Idempotent
 						Make service endpoints idempotent
-
 
 						### Immutability
 						Prefer immutability
